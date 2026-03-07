@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ImpactaAR - Agencia de marketing digital en Argentina. Redes sociales, publicidad, SEO y contenido para hacer crecer tu negocio." />
+  <title>ImpactaAR | Agencia de Marketing Digital en Argentina</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --azul: #0f0f5c;
+      --azul-mid: #1a1a6e;
+      --celeste: #3a86ff;
+      --amarillo: #f7c948;
+      --blanco: #ffffff;
+      --gris: #f5f6fa;
+      --texto: #2d2d2d;
+      --texto-light: #6b7280;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+      color: var(--texto);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      background: var(--azul);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.9rem 4rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+    }
+
+    .logo {
+      color: var(--blanco);
+      font-size: 1.5rem;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--amarillo);
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: var(--amarillo);
+    }
+
+    .nav-cta {
+      background: var(--amarillo);
+      color: var(--azul) !important;
+      padding: 0.5rem 1.3rem;
+      border-radius: 50px;
+      font-weight: 700 !important;
+      transition: transform 0.2s, box-shadow 0.2s !important;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(247,201,72,0.4);
+    }
+
+    /* HAMBURGER */
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.25rem;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2.5px;
+      background: white;
+      margin: 5px 0;
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--azul) 0%, #1e1e8a 50%, var(--celeste) 100%);
+      color: var(--blanco);
+      text-align: center;
+      padding: 7rem 2rem 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(58,134,255,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 span {
+      color: var(--amarillo);
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      max-width: 540px;
+      margin: 0 auto 2.5rem;
+      opacity: 0.9;
+      line-height: 1.7;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--amarillo);
+      color: var(--azul);
+      padding: 0.95rem 2.5rem;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn:hover,
+    .btn:focus {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      outline: none;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 0.4rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      margin-bottom: 1.5rem;
+      color: rgba(255,255,255,0.9);
+    }
+
+    /* SERVICIOS */
+    .servicios {
+      background: var(--gris);
+      padding: 5rem 4rem;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: var(--azul);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-sub {
+      color: var(--texto-light);
+      margin-bottom: 3rem;
+      font-size: 1.05rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: var(--blanco);
+      border-radius: 16px;
+      padding: 2.2rem 1.8rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      transition: transform 0.25s, box-shadow 0.25s;
+      text-align: left;
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+    }
+
+    .card-icon {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      width: 52px;
+      height: 52px;
+      background: var(--gris);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card h3 {
+      color: var(--azul);
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .card p {
+      color: var(--texto-light);
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
+    /* NUMEROS */
+    .numeros {
+      background: var(--azul);
+      color: var(--blanco);
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .numeros-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .numero-item h2 {
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: var(--amarillo);
+      line-height: 1.1;
+    }
+
+    .numero-item p {
+      font-size: 0.92rem;
+      opacity: 0.8;
+      margin-top: 0.25rem;
+    }
+
+    /* POR QUE */
+    .porque {
+      padding: 5rem 4rem;
+      text-align: center;
+      background: var(--blanco);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .feature {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding: 1.2rem;
+      border-radius: 12px;
+      transition: background 0.2s;
+    }
+
+    .feature:hover {
+      background: var(--gris);
+    }
+
+    .feature-icon {
+      background: var(--celeste);
+      color: white;
+      border-radius: 10px;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .feature h4 {
+      color: var(--azul);
+      margin-bottom: 0.25rem;
+      font-weight: 700;
+      font-size: 0.98rem;
+    }
+
+    .feature p {
+      font-size: 0.88rem;
+      color: var(--texto-light);
+      line-height: 1.55;
+    }
+
+    /* CONTACTO */
+    .contacto {
+      background: var(--gris);
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    form {
+      max-width: 520px;
+      margin: 2rem auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    form input,
+    form textarea {
+      padding: 0.9rem 1.1rem;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      background: white;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    form input:focus,
+    form textarea:focus {
+      outline: none;
+      border-color: var(--celeste);
+      box-shadow: 0 0 0 3px rgba(58,134,255,0.15);
+    }
+
+    form textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    form button {
+      background: var(--azul);
+      color: white;
+      border: none;
+      padding: 0.95rem;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      font-family: inherit;
+    }
+
+    form button:hover {
+      background: var(--celeste);
+      transform: translateY(-1px);
+    }
+
+    form button:focus {
+      outline: 2px solid var(--amarillo);
+      outline-offset: 2px;
+    }
+
+    .form-msg {
+      display: none;
+      padding: 0.8rem;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    .form-msg.visible {
+      display: block;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #0a0a2e;
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      padding: 3rem 2rem;
+      font-size: 0.85rem;
+    }
+
+    .footer-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .footer-brand {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-brand span {
+      color: var(--amarillo);
+    }
+
+    .footer-links {
+      margin: 1rem 0;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--amarillo);
+    }
+
+    .footer-copy {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      opacity: 0.6;
+    }
+
+    /* ANIMATIONS */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav {
+        padding: 0.8rem 1.5rem;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--azul);
+        flex-direction: column;
+        padding: 1rem 1.5rem 1.5rem;
+        gap: 0;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links li {
+        width: 100%;
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 0.8rem 0;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+        font-size: 1rem;
+      }
+
+      .nav-cta {
+        text-align: center;
+        margin-top: 0.5rem;
+        display: block;
+      }
+
+      .hero {
+        padding: 4.5rem 1.5rem 3.5rem;
+      }
+
+      .hero h1 {
+        font-size: 2.1rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .servicios,
+      .porque {
+        padding: 3.5rem 1.5rem;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .numeros-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .numero-item h2 {
+        font-size: 2.2rem;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .contacto {
+        padding: 3.5rem 1.5rem;
+      }
+
+      .section-title {
+        font-size: 1.65rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 1.75rem;
+      }
+
+      .btn {
+        padding: 0.8rem 2rem;
+        font-size: 0.92rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVEGACION -->
+  <nav aria-label="Navegacion principal">
+    <a href="#" class="logo">Impacta<span>AR</span></a>
+    <button class="hamburger" aria-label="Abrir menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#porque">Nosotros</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+      <li><a href="#contacto" class="nav-cta">Hablemos</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">Agencia #1 en marketing digital</div>
+      <h1>Hacemos crecer tu marca<br>en el mundo <span>digital</span></h1>
+      <p>Somos una agencia de marketing digital argentina con foco en resultados reales para tu negocio. Estrategia, creatividad y datos.</p>
+      <a href="#contacto" class="btn">Hablemos hoy</a>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="servicios fade-up" id="servicios">
+    <h2 class="section-title">Nuestros Servicios</h2>
+    <p class="section-sub">Todo lo que tu negocio necesita para destacarse online</p>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">📱</div>
+        <h3>Redes Sociales</h3>
+        <p>Gestión profesional de Instagram, Facebook, TikTok y LinkedIn con contenido estratégico.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎯</div>
+        <h3>Publicidad Digital</h3>
+        <p>Campañas de Meta Ads y Google Ads optimizadas para maximizar tu retorno de inversión.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">✍️</div>
+        <h3>Creación de Contenido</h3>
+        <p>Diseño gráfico, copywriting y producción audiovisual que conecta con tu audiencia.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔍</div>
+        <h3>SEO & Web</h3>
+        <p>Posicionamiento orgánico y desarrollo web para que te encuentren primero en Google.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NUMEROS -->
+  <section class="numeros fade-up">
+    <div class="numeros-grid">
+      <div class="numero-item">
+        <h2>+150</h2>
+        <p>Clientes satisfechos</p>
+      </div>
+      <div class="numero-item">
+        <h2>8+</h2>
+        <p>Años de experiencia</p>
+      </div>
+      <div class="numero-item">
+        <h2>320%</h2>
+        <p>ROI promedio logrado</p>
+      </div>
+      <div class="numero-item">
+        <h2>24/7</h2>
+        <p>Soporte y seguimiento</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- POR QUE ELEGIRNOS -->
+  <section class="porque fade-up" id="porque">
+    <h2 class="section-title">¿Por qué elegirnos?</h2>
+    <p class="section-sub">Trabajamos con vos, no para vos</p>
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon" aria-hidden="true">🇦🇷</div>
+        <div>
+          <h4>100% argentinos</h4>
+          <p>Entendemos el mercado local, la cultura y los vaivenes económicos del país.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon" aria-hidden="true">📊</div>
+        <div>
+          <h4>Foco en resultados</h4>
+          <p>Métricas claras, reportes mensuales y estrategias orientadas a ventas reales.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon" aria-hidden="true">🤝</div>
+        <div>
+          <h4>Trato personalizado</h4>
+          <p>No sos un número más. Tenés un equipo dedicado a tu cuenta.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon" aria-hidden="true">⚡</div>
+        <div>
+          <h4>Agilidad y rapidez</h4>
+          <p>Nos adaptamos rápido a los cambios del mercado y a tus necesidades.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="contacto fade-up" id="contacto">
+    <h2 class="section-title">Contactanos</h2>
+    <p class="section-sub">Contanos tu proyecto y te respondemos en menos de 24 horas</p>
+    <form id="contactForm" novalidate>
+      <label for="nombre" class="sr-only">Nombre</label>
+      <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required autocomplete="name" />
+      <label for="email" class="sr-only">Email</label>
+      <input type="email" id="email" name="email" placeholder="Tu email" required autocomplete="email" />
+      <label for="empresa" class="sr-only">Empresa</label>
+      <input type="text" id="empresa" name="empresa" placeholder="Tu empresa (opcional)" autocomplete="organization" />
+      <label for="mensaje" class="sr-only">Mensaje</label>
+      <textarea id="mensaje" name="mensaje" placeholder="¿En qué podemos ayudarte?"></textarea>
+      <button type="submit">Enviar mensaje</button>
+      <div class="form-msg" id="formMsg" role="status">Mensaje enviado. Te contactaremos pronto.</div>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-brand">Impacta<span>AR</span></div>
+      <p>Agencia de Marketing Digital | Buenos Aires, Argentina</p>
+      <div class="footer-links">
+        <a href="#servicios">Servicios</a>
+        <a href="#porque">Nosotros</a>
+        <a href="#contacto">Contacto</a>
+        <a href="mailto:info@impactaar.com.ar">info@impactaar.com.ar</a>
+      </div>
+      <p class="footer-copy">&copy; 2026 ImpactaAR. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <style>
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+
+  <script>
+    // Hamburger menu
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      hamburger.classList.toggle('active');
+      hamburger.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Close menu on link click
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Form handling
+    document.getElementById('contactForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const msg = document.getElementById('formMsg');
+      msg.classList.add('visible');
+      e.target.reset();
+      setTimeout(() => msg.classList.remove('visible'), 4000);
+    });
+  </script>
+
+</body>
+</html>
